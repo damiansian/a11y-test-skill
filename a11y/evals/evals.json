@@ -1,0 +1,17 @@
+{
+  "skill_name": "a11y",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a React component that renders a dropdown menu using divs and onClick handlers. Users are reporting they can't use it with their keyboard. Here's the component:\n\n```jsx\nfunction Dropdown({ items, onSelect }) {\n  const [isOpen, setIsOpen] = useState(false);\n  return (\n    <div className=\"dropdown\">\n      <div className=\"dropdown-trigger\" onClick={() => setIsOpen(!isOpen)}>\n        Select an option\n      </div>\n      {isOpen && (\n        <div className=\"dropdown-menu\">\n          {items.map((item, i) => (\n            <div key={i} className=\"dropdown-item\" onClick={() => onSelect(item)}>\n              {item.label}\n            </div>\n          ))}\n        </div>\n      )}\n    </div>\n  );\n}\n```\n\nCan you generate Playwright accessibility tests for this and tell me what's wrong?",
+      "expected_output": "Should generate a Playwright test file that imports from a11y-test-helpers, tests the interaction chain (keyboard reachability, focus indicator, announcement after selection, escape to close, focus management), and provide a companion manual test checklist. Should also identify the specific issues (non-semantic divs, no keyboard handling, no ARIA, no focus management, no live region for selection announcement) and provide a remediated component.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We're building a multi-step checkout form (3 steps: shipping, payment, review). When the user completes a step, it slides to the next one. There's a progress indicator at the top. Can you generate the accessibility test scripts we should require before this ships? We're using Next.js with React.",
+      "expected_output": "Should generate Playwright tests covering: step transition announcements (live region when moving to next step), progress indicator state updates (aria-current or equivalent), focus management after step change (focus moves to new step heading), keyboard navigation through the flow, error handling announcements when validation fails, back-button behavior and focus restoration, zoom/reflow at 200% and 400%, and a companion manual test checklist. Should also address SPA-specific concerns like route change announcements.",
+      "files": []
+    }
+  ]
+}
